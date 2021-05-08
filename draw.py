@@ -14,6 +14,8 @@ x = y = 230
 width = height = 40
 vel = 1
 
+win.fill((30,144,255))
+
 # Create main window.
 
 active = True
@@ -39,7 +41,7 @@ while active:
     if keys[pygame.K_DOWN]:
         y += vel
 
-    pygame.draw.rect(win, (255, 0, 0), (x, y, width, height))
+    pygame.draw.rect(win, (255,140,0), (x, y, width, height))
     pygame.display.update()
             
 pygame.quit()
