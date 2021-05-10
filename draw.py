@@ -27,8 +27,8 @@ while active:
         if event.type == pygame.QUIT:
             active = False
             
-    keys = pygame.key.get_pressed()
-    
+    keys = pygame.key.get_pressed()    
+
     if keys[pygame.K_LEFT]:
         x -= vel
         

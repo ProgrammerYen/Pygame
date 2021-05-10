@@ -13,10 +13,15 @@ pygame.display.set_caption("Square block")
 # Assigning values to variables
 
 x = y = 182
-width = height = 40
+width = height = 45
 vel = 1
 
+win.fill((255,165,0))
+
+jump = True
 active = True
+jump_count = 1
+
 while active:
     
     # Delays the program by 100 milliseconds before certain movements happen.
@@ -42,22 +47,35 @@ while active:
         pygame.draw.rect(win, (255, 0, 255), (x, y, width, height))
         pygame.display.update()
 
-    if keys[pygame.K_LEFT]:
+    if keys[pygame.K_LEFT] and x > 0:
         x -= vel
         random_colour()
         
-    if keys[pygame.K_RIGHT]:
+    if keys[pygame.K_RIGHT] and x < 355:
         x += vel
         random_colour()
-        
-    if keys[pygame.K_UP]:
-        y -= vel
-        random_colour()
-        
-    if keys[pygame.K_DOWN]:
-        y += vel
-        random_colour()
-        
+    
+    if not(jump):
+        if keys[pygame.K_UP] and y > 0:
+            y -= vel
+            random_colour()
+            
+        if keys[pygame.K_DOWN] and y < 355:
+            y += vel
+            random_colour()
+            
+        if keys[pygame.K_SPACE]:
+            jump = True
+
+    else:
+        if jump_count >= -10:
+            y -= (jump_count ** 2) * 0.5
+            jump_count -= 1
+
+        else:
+            jump = False
+            jump_count = 10
+
     pygame.draw.rect(win, (255, 0, 255), (x, y, width, height))
     pygame.display.update()
 
